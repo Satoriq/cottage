@@ -1,0 +1,950 @@
+// I used BEM naming methodology
+//It looks like .block__element--modifier and block-name__element-name--modifier-name
+
+/*----------  Variables   ----------*/
+$primary-color: #5bc0de;
+$secondary-color: #f9f9f9;
+$decor-color: #00aedb;
+$inner-color: #fff;
+$main-font: "Nunito", sans-serif;
+
+/*----------  General Styles   ----------*/
+body {
+  font-family: $main-font;
+  background-color: $secondary-color;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  -webkit-padding-start: 0;
+  list-style: none;
+}
+
+
+/*----------  Blazy   ----------*/
+.b-lazy {
+  transition: opacity 500ms ease-in-out;
+  max-width: 100%;
+  opacity: 0;
+  &.b-loaded {
+    opacity: 1;
+  }
+}
+
+/*----------  PhotoSwipe   ----------*/
+.my-gallery {
+  width: 30%;
+  a {
+    cursor: default;
+  }
+  img {
+    width: 100%;
+    height: 91px;
+    padding-bottom: 0;
+    margin-left: 1.5px;
+    margin-top: 1px;
+    margin-bottom: 0;
+    cursor: url(../img/glass.png), auto;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  figure {
+    display: block;
+    width: 100%;
+    height: 93px;
+    padding: 0;
+    margin: 0;
+    float: left;
+  }
+  figcaption {
+    display: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+/*----------  POPUPS  ----------*/
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 50;
+  &:target {
+    visibility: visible;
+    opacity: 1;
+    .popup__close, .popup__copy, span{
+      pointer-events: auto;
+    }
+  }
+}
+
+.popup {
+  position: relative;
+  width: 30%;
+  padding: 20px;
+  margin: 70px auto;
+  border-radius: 5px;
+  background: $secondary-color;
+  transition: all 4s ease-in-out;
+  pointer-events: none;
+  @media (max-width: 1440px) {
+    width: 40%;
+  }
+  @media (max-width: 700px) {
+    width: 90%;
+  }
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 40px;
+    color: $primary-color;
+    transition: all 200ms;
+    font-weight: bold;
+    text-decoration: none;
+    &:hover {
+      color: $decor-color;
+      transition: all 0.25s ease-in-out;
+      transform: translateY(-1px);
+    }
+  }
+  &__title {
+    display: inline-block;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    font-size: 30px;
+    color: #6a7481;
+    &--center{
+      display: block;
+      text-align: center;
+    }
+    &--smaller{
+      font-size: 27px;
+      margin-bottom: 15px;
+    }
+  }
+  &__content {
+    font-size: 20px;
+    color: #6a7481;
+    max-height: 30%;
+    &-mail{
+      color: $decor-color;
+    }
+    h2{
+      text-indent: 20px;
+      margin-top: 5px;
+      font-size: 20px;
+      font-weight: 400;
+    }
+    p{
+      text-indent: 20px;
+    }
+  }
+  &__disclaimer{
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: -12px;
+  }
+}
+
+
+/*=============================================
+=     SIDE BUTTONS (HAMBURGER, TOP, SHARE)      =
+=============================================*/
+
+/*----------  HAMBURGER BUTTON ----------*/
+.hamburger {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  box-sizing: border-box;
+  @media (min-width: 700px) {
+    display: none;
+  }
+  &__line {
+    display: block;
+    width: 35px;
+    height: 5px;
+    margin: 5px auto;
+    background-color: $secondary-color;
+    transition: all 0.3s ease-in-out;
+  }
+  &--active {
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    transform: rotate(45deg);
+    .hamburger__line {
+      width: 25px;
+    }
+    .hamburger__line:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger__line:nth-child(1) {
+      transform: translateY(13px);
+    }
+    .hamburger__line:nth-child(3) {
+      transform: translateY(-7px) rotate(90deg);
+    }
+    &::before {
+      border: 5px solid $secondary-color;
+    }
+  }
+  &::before {
+    position: absolute;
+    top: -2px;
+    left: -11px;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    transition: all 0.3s ease-in-out;
+    content: "";
+    box-sizing: border-box;
+  }
+}
+
+/*----------  SHARE BUTTON ----------*/
+.share {
+  display: table;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 50px;
+  background-color: $primary-color;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  &:hover {
+    background-color: $decor-color;
+    transition: all 0.4s ease;
+    transform: translateY(-2px);
+    @media (max-width: 420px) {
+      background-color: $primary-color;
+    }
+  }
+  &__wrapper {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1;
+    @media (max-width: 768px) {
+      right: 10px;
+    }
+  }
+  &__btn {
+    display: block;
+    margin-left: 13px;
+    margin-top: 13px;
+    font-size: 24px;
+    color: $secondary-color;
+  }
+  &__social {
+    display: none;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    &-item {
+      margin-left: 28px;
+      font-size: 24px;
+      color: $secondary-color;
+      list-style: none;
+      transform: translateY(-3px);
+      &:nth-child(5) {
+        font-size: 35px;
+        transform: translateY(-9px);
+        &:hover {
+          transform: translateY(-11px);
+        }
+      }
+      &:hover {
+        color: $inner-color;
+        transition: all 0.25s ease;
+        transform: translateY(-5px);
+      }
+    }
+  }
+  &--active {
+    display: flex;
+    width: 280px;
+    background-color: $primary-color;
+    cursor: default;
+    .share__btn {
+      display: none;
+      opacity: 1;
+      visibility: hidden;
+    }
+    .share__social {
+      display: flex;
+      padding-left: 0;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+.fa-angle-double-right {
+  cursor: pointer;
+}
+
+/*----------  GO TOP BUTTON ----------*/
+.top {
+  position: fixed;
+  right: 22px;
+  bottom: 80px;
+  padding: 5px 14px 5px 14px;
+  font-size: 35px;
+  color: $secondary-color;
+  border-radius: 50%;
+  background-color: $primary-color;
+  transition: opacity 0.6s;
+  cursor: pointer;
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  z-index: -1;
+  @media (max-width: 768px) {
+    right: 11px;
+  }
+  &:hover {
+    background-color: $decor-color;
+    transition: all 0.25s ease-in-out;
+    transform: translateY(-2px);
+  }
+  &:active {
+    transform: translateY(0px);
+  }
+}
+/*=====  End of SIDE BUTTONS  ======*/
+
+
+/*=============================================
+=                NAVIGATION                 =
+=============================================*/
+.nav {
+  display: flex;
+  width: 77%;
+  height: 70px;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 51;
+  @media (max-width: 1440px) {
+    width: 82%;
+  }
+  @media (max-width: 1200px) {
+    width: 95%;
+  }
+  &__logo {
+    display: flex;
+    cursor: pointer;
+    &--hide {
+      display: none;
+    }
+    &-name {
+      margin-top: 22px;
+      font-size: 27px;
+      font-family: $main-font;
+      color: $secondary-color;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    &-image {
+      height: 65px;
+    }
+  }
+  &__bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    background-color: $primary-color;
+    transition: 0.5s;
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.02), 0 3px 14px 3px rgba(0, 0, 0, 0.02), 0 4px 5px 0 rgba(0, 0, 0, 0.03);
+    z-index: 3;
+    &--open {
+      height: 126px;
+    }
+  }
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &--show {
+      display: flex;
+      width: 90%;
+      flex-direction: column;
+      .nav__bar {
+        position: absolute;
+      }
+      .nav__info-item {  //menu items when hamburger is open
+        display: block;
+        position: relative;
+        top: 22px;
+        text-align: center;
+        font-size: 26px;
+      }
+    }
+    &-item {
+      display: inline-block; //for hover effect
+      position: relative;
+      padding-bottom: 8px; //for hover effect
+      margin-left: 50px;
+      margin-top: 15px;
+      font-size: 19px;
+      color: $secondary-color;
+      cursor: pointer;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      @media (max-width: 1200px) {
+        margin-left: 30px;
+      }
+      @media (max-width: 700px) {
+        display: none;
+      }
+      &:after { //for hover effect underline
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 3px;
+        background: none repeat scroll 0 0 transparent;
+        background: $secondary-color;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        content: "";
+      }
+      &:hover {
+        color: $inner-color;
+        transition: all 0.25s ease;
+        transform: translateY(-1px);
+      }
+      &:active {
+        transition: all 0.25s ease;
+        transform: translateY(1px);
+      }
+      &:hover:after {
+        left: 0;
+        width: 100%;
+      }
+    }
+  }
+}
+/*=====  End of NAVIGATION  ======*/
+
+
+/*=============================================
+=                  FILTERS                   =
+=============================================*/
+
+/*----------  SEARCH INPUT ----------*/
+
+.search {
+  display: block;
+  width: 20%;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  text-align: center;
+  font-size: 23px;
+  font-family: $main-font;
+  color: #6a7481;
+  border: 3px solid rgba(91, 192, 222, 0.6);
+  border-radius: 30.5px;
+  background-color: $inner-color;
+  transition: all 0.25s ease;
+  outline: none;
+  @media (max-width: 1600px) {
+    width: 25%;
+  }
+  @media (max-width: 1200px) {
+    width: 30%;
+  }
+  @media (max-width: 1024px) {
+    width: 35%;
+  }
+  @media (max-width: 700px) {
+    width: 40%;
+  }
+  @media (max-width: 600px) {
+    width: 314px;
+    margin-top: 115px;
+  }
+  @media (max-width: 350px) {
+    width: 90%;
+    margin-top: 100px;
+  }
+  &:hover {
+    border: 3px solid rgba(91, 192, 222, 0.85);
+  }
+  &:focus {
+    border: 3px solid rgba(91, 192, 222, 0.95);
+    transition: width 0.5s ease;
+    @media (min-width: 1600px) {
+      width: 32%;
+    }
+    @media (max-width: 1600px) and (min-width: 600px) {
+      width: 40%;
+    }
+    @media (max-width: 1200px) and (min-width: 600px) {
+      width: 45%;
+    }
+    @media (max-width: 1024px) and (min-width: 600px) {
+      width: 50%;
+    }
+    @media (max-width: 700px) and (min-width: 600px) {
+      width: 55%;
+    }
+  }
+  &::-webkit-input-placeholder {
+    color: #8190a5;
+  }
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+}
+
+/*----------  FILTERS ----------*/
+.filters {
+  display: flex;
+  width: 40%;
+  margin: 0 auto;
+  justify-content: space-between;
+  @media (max-width: 1600px) {
+    width: 50%;
+  }
+  @media (max-width: 1280px) {
+    width: 60%;
+  }
+  @media (max-width: 1024px) {
+    width: 70%;
+  }
+  @media (max-width: 700px) {
+    width: 85%;
+  }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (max-width: 350px) {
+    width: 90%;
+  }
+}
+
+.categories {
+  display: inline-block;
+  position: relative;
+  width: 314px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 22px;
+  font-family: $main-font;
+  color: #8190a5;
+  border: 2px solid rgba(91, 192, 222, 0.4);
+  border-radius: 10px;
+  background-color: $inner-color;
+  cursor: pointer;
+  @media (max-width: 600px) {
+    margin-top: 15px;
+  }
+  @media (max-width: 350px) {
+    width: 100%;
+  }
+  &--clicked{
+    border: 2px solid rgba(91, 192, 222, 0.95);
+    transition: all 0.25s ease;
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.02), 0 3px 14px 3px rgba(0, 0, 0, 0.02), 0 4px 5px 0 rgba(0, 0, 0, 0.03);
+  }
+  &__wrapper {
+    display: flex;
+    width: 60%;
+    @media (max-width: 600px) {
+      width: 314px;
+      align-items: center;
+    }
+    @media (max-width: 475px) {
+      width: 314px;
+    }
+    @media (max-width: 350px) {
+      width: 100%;
+    }
+  }
+  &:hover {
+    border: 2px solid rgba(91, 192, 222, 0.95);
+    transition: all 0.25s ease;
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.02), 0 3px 14px 3px rgba(0, 0, 0, 0.02), 0 4px 5px 0 rgba(0, 0, 0, 0.03);
+    & .categories__content {
+      @media (min-width: 1024px){ //fix for tablets/ phones
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  }
+  &__content {
+    display: block;
+    position: absolute;
+    left: -2px;
+    width: 100%;
+    padding-top: 10px;
+    font-size: 21px;
+    border: 2px solid rgba(91, 192, 222, 1);
+    background-color: $secondary-color;
+    background-color: $inner-color;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+    border-top: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    opacity: 0;
+    z-index: 50;
+    @media (max-width: 1368px) {
+      font-size: 20px;
+    }
+    &--show { //for js onclick
+      opacity: 1;
+      pointer-events: auto;    
+    }
+    &-item {
+      width: 100%;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      text-align: left;
+      font-family: $main-font;
+      color: #8190a5;
+      border: none;
+      background: none;
+      cursor: pointer;
+      @media (max-width: 1368px) {
+        padding-top: 3.5px;
+        padding-bottom: 3.5px;
+      }
+      &:hover {
+        color: #697586;
+        background-color: rgba(91, 192, 222, 0.3);
+      }
+    }
+  }
+}
+
+/*------- ONLY LOW / ONLY HIGH BUTTONS ----------*/
+.allowed {
+  width: 268px;
+  height: 50px;
+  margin-left: 10px;
+  margin-top: 20px;
+  font-size: 22px;
+  font-family: $main-font;
+  color: #58c858;
+  border: 3px solid rgba(88, 200, 88, 0.4);
+  border-radius: 10px;
+  background-color: $inner-color;
+  transition: all 0.25s ease;
+  outline: none;
+  cursor: pointer;
+  @media (max-width: 600px) {
+    margin-left: 0;
+    margin-top: -8px;
+  }
+  &:hover {
+    @media (min-width: 1025px) { //disabled hover for tablets/phones
+      color: $inner-color;
+      border: 3px solid rgba(88, 200, 88, 0.7);
+      background-color: #58c858;
+      transition: all 0.25s ease;
+      transform: translateY(-1px);
+    }
+  }
+  &:active {
+    transform: translateY(0px);
+  }
+  &--checked {
+    color: $inner-color;
+    border: 3px solid #58c858;
+    background-color: #58c858;
+    box-shadow: 2px 5px 10px #e4e4e4;
+    &:hover {
+      transition: all 0.25s ease;
+      transform: translateY(-1px);
+    }
+    &:active {
+      transform: translateY(0px);
+    }
+  }
+}
+
+.banned {
+  width: 268px;
+  height: 50px;
+  margin-left: 10px;
+  margin-top: 20px;
+  font-size: 22px;
+  font-family: $main-font;
+  color: rgba(217, 83, 79, 0.9);
+  border: 3px solid rgba(217, 83, 79, 0.4);
+  border-radius: 10px;
+  background-color: $inner-color;
+  transition: all 0.25s ease;
+  outline: none;
+  cursor: pointer;
+  @media (max-width: 600px) {
+    margin-top: -8px;
+  }
+  &:hover {
+    @media (min-width: 1024px) { //disabled hover for tablets/phones
+      color: $inner-color;
+      border: 3px solid rgba(217, 83, 79, 0.7);
+      background-color: #d9534f;
+      transition: all 0.25s ease;
+      transform: translateY(-1px);
+    }
+  }
+  &:active {
+    transform: translateY(0px);
+  }
+  &--checked {
+    color: $inner-color;
+    border: 3px solid #d9534f;
+    background-color: #d9534f;
+    box-shadow: 2px 5px 10px #e4e4e4;
+    &:hover {
+      transition: all 0.25s ease;
+      transform: translateY(-1px);
+    }
+    &:active {
+      transform: translateY(0px);
+    }
+  }
+}
+/*=====  End of FILTERS  ======*/
+
+
+/*=============================================
+=            CONTAINER WITH PRODUCTS          =
+=============================================*/
+.container {
+  display: flex;
+  width: 80%;
+  max-width: 1550px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  @media (max-width: 1440px) {
+    width: 90%;
+  }
+}
+
+.food {
+  width: 30%;
+  max-height: 93px;
+  margin-left: 3%;
+  margin-top: 30px;
+  color: #6a7481;
+  border: 2px solid rgba(91, 192, 222, 0.59);
+  border-radius: 59px;
+  background-color: $inner-color;
+  transition: all .3s linear;
+  @media (max-width: 1520px) {
+    width: 29%;
+  }
+  @media (max-width: 1280px) {
+    width: 45%;
+  }
+  @media (max-width: 700px) {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (max-width: 420px) {
+    width: 95%;
+  }
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    &-name {
+      margin-left: 10px;
+      margin-top: 8px;
+      font-size: 25px;
+      color: #515963;
+      line-height: 90%;
+      @media (max-width: 1700px) {
+        margin-top: 10px;
+        font-size: 23px;
+      }
+      @media (max-width: 1439px) {
+        margin-top: 10px;
+        font-size: 22px;
+      }
+      @media (max-width: 800px) {
+        margin-top: 11px;
+        font-size: 21px;
+      }
+      &--gluten {
+        font-size: 18px;
+        @media (max-width: 1832px) {
+          font-size: 16px;
+        }
+        @media (max-width: 1680px) {
+          font-size: 18px;
+        }
+        @media (max-width: 750px) and (min-width: 700px) {
+          font-size: 16px;
+        }
+        @media (max-width: 350px) {
+          font-size: 16px;
+        }
+      }
+      &--instant {
+        font-size: 23px;
+        @media (max-width: 1700px) {
+          margin-top: 5px;
+          font-size: 20px;
+        }
+        @media (max-width: 1537px) and (min-width: 700px) {
+          font-size: 19px;
+        }
+        @media (max-width: 430px) {
+          font-size: 19px;
+        }
+      }
+      &--powder {
+        font-size: 20px;
+        @media (max-width: 1325px) and (min-width: 1200px) {
+          font-size: 19px;
+        }
+        @media (max-width: 860px) and (min-width: 500px) {
+          font-size: 18px;
+        }
+      }
+      &--lettuce {
+        font-size: 20px;
+        @media (max-width: 1535px) and (min-width: 1200px) {
+          font-size: 19px;
+        }
+        @media (max-width: 900px) and (min-width: 500px) {
+          font-size: 18px;
+        }
+        @media (max-width: 430px) {
+          margin-top: 5px;
+          font-size: 19px;
+        }
+      }
+      &--coconut {
+        font-size: 20px;
+        @media (max-width: 1535px) and (min-width: 1200px) {
+          font-size: 19px;
+        }
+        @media (max-width: 900px) and (min-width: 500px) {
+          font-size: 18px;
+        }
+      }
+      &--smaller {
+        margin-top: 5px;
+        font-size: 19px;
+      }
+      &--cuts {
+        margin-top: 5px;
+        font-size: 19px;
+        @media (max-width: 350px) {
+          font-size: 17px;
+        }
+      }
+      &--mobile-s { //modificator for mobile with s-size of screen
+        @media (max-width: 350px) {
+          margin-top: 9px;
+          font-size: 19px;
+        }
+      }
+    }
+  }
+  &__details {
+    padding-right: 10px;
+    margin-left: 32.5%;
+    margin-top: 20px;
+    font-size: 15px;
+    color: rgba(71, 82, 94, 0.68);
+    @media (max-width: 1700px) {
+      font-size: 14px;
+    }
+    @media (max-width: 800px) {
+      font-size: 14px;
+    }
+    &--gluten {
+      @media (max-width: 1680px) {
+        display: none;
+      }
+    }
+    &-wrapper {
+      white-space: nowrap;
+    }
+  }
+  &__fodmap {
+    width: 27%;
+    height: 20px;
+    padding-top: 5px;
+    margin-right: 10%;
+    margin-top: 10px;
+    text-align: center;
+    color: $secondary-color;
+    border-radius: 15px;
+    align-self: flex-start;
+    min-width: 45px;
+    @media (max-width: 1440px) {
+      height: 18px;
+      font-size: 14px;
+    }
+    &--low {
+      background-color: #58c858;
+    }
+    &--high {
+      background-color: #d9534f;
+    }
+  }
+}
+
+.circle {
+  display: inline-block;
+  padding: 5px;
+  margin-right: 6px;
+  border-radius: 50%;
+  @media (max-width: 1440px) {
+    padding: 4.2px;
+    margin-bottom: 0.5px;
+  }
+  &--good {
+    background-color: rgba(88, 200, 88, 0.7);
+    @extend .circle;
+  }
+  &--middle {
+    background-color: rgb(255, 246, 143);
+    @extend .circle;
+  }
+  &--bad {
+    background-color: rgba(217, 83, 79, 0.7);
+    @extend .circle;
+  }
+  &--idk {
+    background-color: grey;
+    @extend .circle;
+  }
+}
+/*=====  End of CONTAINER WITH PRODUCTS  ======*/
+
+
+/*----------  Free space for decoration =)  ----------*/
+.free-space {
+  height: 100px;
+}
