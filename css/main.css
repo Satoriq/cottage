@@ -568,7 +568,7 @@ ul {
 
 
 .background-image2{
-  background-image: url("../img/outside/outside_28.JPG");
+  background-image: url("../img/outside/outside_28.jpg");
   /* background: linear-gradient(to top, rgba(229, 233, 240, 0.5) 15%, rgba(229, 233, 240, 0.1) 50%, rgba(229, 233, 240, 0.1) 100%); */
   z-index: -1;
   background-repeat: no-repeat;
