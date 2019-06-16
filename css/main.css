@@ -594,12 +594,12 @@ html {
 
 @media (max-width: 1600px) {
   .block-wrapper2 {
-    bottom: 30px;
+    bottom: 10px;
   }
 }
 @media (max-width: 1400px) {
   .block-wrapper2 {
-    bottom: 20px;
+    bottom: 10px;
   }
 }
 
