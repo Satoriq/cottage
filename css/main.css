@@ -588,15 +588,18 @@ ul {
   bottom: 65px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 @media (max-width: 1600px) {
   .block-wrapper2 {
-    bottom: 60px;
+    bottom: 30px;
   }
 }
 @media (max-width: 1400px) {
   .block-wrapper2 {
-    bottom: 30px;
+    bottom: 20px;
   }
 }
 

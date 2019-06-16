@@ -3,7 +3,6 @@
 // then do it better.
 // Now I'm at the first stage =)
 
-
 // var openPhotoSwipe = function() {
 //   console.log('inited');
 //   var pswpElement = document.querySelectorAll('.pswp')[0];
